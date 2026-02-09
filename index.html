@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitna Bana - Ghanto Ka Hisab Ab Minto me</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Swiper.js -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Lottie (optional, kept for future) -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-text">
+                    <span class="logo-kitna">Kitna</span><span class="logo-bana">Bana</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#problem" class="nav-link">Problem</a>
+                <a href="#solution" class="nav-link">Solution</a>
+                <a href="#ai-advisor" class="nav-link">AI Advisor</a>
+                <a href="#download" class="nav-link cta-link">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="stats-badge">
+                <span class="badge-text" id="stat-text">
+                    <span id="stat-number">₹2,847</span> - Average daily loss
+                </span>
+            </div>
+
+            <h1 class="hero-title">
+                Roz mehnat,<br />phir bhi <span class="highlight-red">paisa gayab?</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Delivery, cab, food delivery - <strong>din bhar daudna</strong>, lekin mahine ke end mein
+                <strong>hisaab nahi milta</strong>. Kitna kamaya? Kitna kharch kiya? <strong>Kuch pata nahi!</strong>
+            </p>
+
+            <div class="hero-cta">
+                <button class="btn btn-primary" id="hero-download-btn">Solve Karo - Free Download</button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="phone-mockup hero-phone">
+                <div class="phone-screen">
+                    <div class="phone-header"></div>
+
+                    <div class="phone-content" id="hero-phone-content">
+                        <!-- Dashboard -->
+                        <div class="hero-animation-screen" id="dashboard-screen">
+                            <div class="dashboard-header">Aaj Kitna Bana</div>
+                            <div class="dashboard-amount">₹1,000</div>
+                            <div class="dashboard-chart">
+                                <svg viewBox="0 0 100 50" aria-hidden="true">
+                                    <path d="M 0 50 Q 25 20, 50 30 T 100 20" stroke="var(--primary-green)" fill="transparent" stroke-width="2" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Voice Entry -->
+                        <div class="hero-animation-screen" id="voice-entry-screen">
+                            <div class="voice-header">
+                                <span class="rec-dot" aria-hidden="true">●</span>
+                                <span class="rec-label">Listening…</span>
+                                <span class="rec-timer" id="rec-timer" aria-live="off">00:00</span>
+                            </div>
+
+                            <div class="voice-bubble" aria-live="polite">
+                                <div class="voice-entry-icon" aria-hidden="true">🎤</div>
+                                <div class="voice-transcript">
+                                    <span id="voice-transcript-text"></span>
+                                    <span class="cursor" aria-hidden="true">|</span>
+                                </div>
+                            </div>
+
+                            <div class="parsed-output" aria-label="Parsed details">
+                                <div class="chip"><span>🧾</span> Earnings <strong id="chip-earn">₹2,400</strong></div>
+                                <div class="chip"><span>🛒</span> Orders <strong id="chip-orders">12</strong></div>
+                                <div class="chip"><span>⛽️</span> Fuel <strong id="chip-fuel">-₹300</strong></div>
+                                <div class="chip"><span>💵</span> Cash <strong id="chip-cash">₹500</strong></div>
+                            </div>
+
+                            <div class="voice-hint">Say “Save it” or tap Save</div>
+                        </div>
+
+                        <!-- Expenses -->
+                        <div class="hero-animation-screen" id="expense-tracking-screen">
+                            <div class="expense-header">Recent Expenses</div>
+                            <div class="expense-list">
+                                <div class="expense-item">
+                                    <div class="expense-icon">⛽️</div>
+                                    <div class="expense-details">
+                                        <div class="expense-category">Fuel</div>
+                                        <div class="expense-description">Petrol</div>
+                                    </div>
+                                    <div class="expense-amount">-₹200</div>
+                                </div>
+                                <div class="expense-item">
+                                    <div class="expense-icon">🍔</div>
+                                    <div class="expense-details">
+                                        <div class="expense-category">Food</div>
+                                        <div class="expense-description">Lunch</div>
+                                    </div>
+                                    <div class="expense-amount">-₹150</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Goals -->
+                        <div class="hero-animation-screen" id="goal-progress-screen">
+                            <div class="goal-header">Goal Progress</div>
+                            <div class="goal-item">
+                                <div class="goal-icon">📱</div>
+                                <div class="goal-details">
+                                    <div class="goal-name">New Phone</div>
+                                    <div class="goal-progress-bar">
+                                        <div class="goal-progress" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="goal-amount">₹12,000 / ₹20,000</div>
+                            </div>
+                        </div>
+
+                        <!-- AI Insights -->
+                        <div class="hero-animation-screen" id="ai-insights-screen">
+                            <div class="insight-header">AI Insight</div>
+                            <div class="insight-card">
+                                <div class="insight-icon">💡</div>
+                                <div class="insight-text">
+                                    You can save up to <strong>₹1,500</strong> per month by reducing your food expenses.
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- /phone-content -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <div class="problems-container">
+        <section class="problems" id="problem">
+            <div class="section-header">
+                <h2>Ye Problems Familiar Lagti Hain?</h2>
+                <p class="section-subtitle">Har din ka struggle, har mahine ka shock</p>
+            </div>
+
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⏱️</div>
+                    <h3>"Kitna Kamaya Aaj?"</h3>
+                    <p>
+                        Roz ka hisaab lagane mein 30-45 minutes. Trips count karna, fuel cost calculate karna,
+                        commission deduct karna - <strong>time waste!</strong>
+                    </p>
+                    <div class="problem-stat">⏰ 15+ hours monthly wasted</div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>"Paisa Kahan Gaya?"</h3>
+                    <p>
+                        Petrol, chai-nashta, phone recharge, bike maintenance - <strong>chhote expenses</strong> add up ho
+                        jaate hain. Month end mein shock!
+                    </p>
+                    <div class="problem-stat">💸 ₹2,800+ monthly leakage</div>
+                </div>
+
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>"Target Kaise Achieve Karu?"</h3>
+                    <p>
+                        Monthly target ₹40,000 hai, but <strong>daily planning nahi</strong>. Kitne orders chahiye? Kitne
+                        hours kaam karna hai? No idea!
+                    </p>
+                    <div class="problem-stat">📉 67% miss monthly targets</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="section-header">
+            <div class="solution-badge">✨ Solution Ready Hai</div>
+            <h2>Kitna Bana: <span class="highlight-green">Smart Hisaab-Kitaab</span></h2>
+            <p class="section-subtitle">
+                Bas 2 minutes daily - aapka complete financial picture ready. <strong>Voice mein bolo, AI samjhega</strong>,
+                aur smart insights dega.
+            </p>
+        </div>
+
+        <div class="feature-showcase">
+            <!-- Sticky Phone Mockup -->
+            <div class="phone-container">
+                <div class="phone-mockup showcase-phone">
+                    <div class="phone-screen" id="showcase-phone-screen">
+                        <div class="phone-header"></div>
+                        <div class="phone-content" id="phone-content">
+                            <div class="phone-content-display" id="feature-display-1">
+                                <div class="feature-animation voice-animation">
+                                    <div class="microphone-icon">🎤</div>
+                                    <div class="voice-wave-animation">
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                    </div>
+                                    <p class="feature-label">Voice Entry</p>
+                                    <p class="feature-example">Aaj 12 orders, ₹2,400 kamaya</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrolling Content Panels -->
+            <div class="features-content">
+                <div class="feature-panel" data-feature="1">
+                    <div class="feature-number">01</div>
+                    <h3>Voice Mein Bolo, Done!</h3>
+                    <p>
+                        "Aaj 12 orders, ₹2,400 kamaya, ₹300 petrol" - <strong>bas itna bolna hai</strong>. Typing ki zarurat nahi!
+                        AI automatically samjh jayega aur entry kar dega.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>✓ 30 seconds mein entry</li>
+                        <li>✓ Hindi/Hinglish support</li>
+                        <li>✓ Offline bhi kaam kare</li>
+                    </ul>
+                </div>
+
+                <div class="feature-panel" data-feature="2">
+                    <div class="feature-number">02</div>
+                    <h3>Daily Target & Insights</h3>
+                    <p>
+                        <strong>AI batayega</strong> - aaj kitne orders chahiye target ke liye? Best time slots kya hain?
+                        Fuel efficiency kaise badhaye? Smart planning har din.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>✓ Smart daily planning</li>
+                        <li>✓ Peak hour analysis</li>
+                        <li>✓ Efficiency tips</li>
+                    </ul>
+                </div>
+
+                <div class="feature-panel" data-feature="3">
+                    <div class="feature-number">03</div>
+                    <h3>Money Leaks Pakdo</h3>
+                    <p>
+                        Kahan zyada kharcha ho raha? <strong>Kaise bachaye?</strong> Weekly reports mein clear picture milega.
+                        Har rupee ka hisaab.
+                    </p>
+                    <ul class="feature-benefits">
+                        <li>✓ ₹3,000+ monthly savings</li>
+                        <li>✓ Weekly reports</li>
+                        <li>✓ Expense categories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Advisor Section -->
+    <section class="ai-advisor" id="ai-advisor">
+        <div class="section-header">
+            <div class="ai-badge">🤖 AI Advisor - Aapka Financial Dost</div>
+            <h2>Kitna Zyada Kama Sakte Ho?</h2>
+            <p class="section-subtitle">
+                AI batata hai aap kitna extra kama sakte hain aur apne goals tak kitni jaldi pahunch sakte hain
+            </p>
+        </div>
+
+        <div class="ai-advisor-content">
+            <!-- AI Advisor Mockup -->
+            <div class="ai-mockup-container">
+                <div class="phone-mockup ai-phone">
+                    <div class="phone-screen ai-screen">
+                        <div class="phone-header"></div>
+                        <div class="ai-content">
+                            <div class="ai-metric">
+                                <div class="ai-label">Potential Earning</div>
+                                <div class="ai-value" id="potential-earnings" data-target="52000">₹52,000</div>
+                                <div class="ai-subtext">vs ₹40,000 abhi</div>
+                            </div>
+                            <div class="ai-metric">
+                                <div class="ai-label">Days to Target</div>
+                                <div class="ai-value" id="days-to-target" data-target="18">18 din</div>
+                                <div class="ai-subtext">vs 25 din average</div>
+                            </div>
+                            <div class="ai-metric">
+                                <div class="ai-label">Peak Hours</div>
+                                <div class="ai-value">12-2 PM</div>
+                                <div class="ai-subtext">7-9 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Benefits -->
+            <div class="ai-benefits">
+                <h3>AI Advisor Aapke Liye Kya Karta Hai</h3>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-text">
+                        <h4>Har Mahine ₹2,000+ Extra Kamao</h4>
+                        <p>
+                            AI aapke patterns ko samajhta hai aur batata hai ki kaise apni rides ko optimize karke maximum earnings
+                            ki ja sakti hai. Apne sheher ke top earners se seekho.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-text">
+                        <h4>Goals 10 Din Jaldi Poore Karo</h4>
+                        <p>
+                            Aapki speed aur patterns ke basis par personalized daily targets. AI predict karta hai ki aap apna
+                            monthly goal kab tak poora kar lenge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-text">
+                        <h4>Smart Time Planning</h4>
+                        <p>
+                            Kaam karne ke best hours, kab break lena hai, aur kaunse areas mein maximum earnings milti hai,
+                            sab jaano. Real-time optimization tips.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-text">
+                        <h4>Kharchon Ko Optimize Karo</h4>
+                        <p>
+                            AI pehchanta hai ki aap kahan faltu kharch kar rahe hain aur paise bachane ke tarike batata hai.
+                            Har mahine ₹3,000+ bachao.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust -->
+    <section class="trust">
+        <div class="section-header">
+            <h2>Kyun Trust Karein <span class="highlight-green">Kitna Bana?</span></h2>
+        </div>
+
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">✓</div>
+                <h3>100% FREE Forever</h3>
+                <p><strong>Koi hidden charges nahi.</strong> Gig workers ke liye banaya hai, unhi ke liye hamesha free rahega.</p>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">⚡</div>
+                <h3>Offline Bhi Chale</h3>
+                <p>
+                    <strong>Internet na ho toh bhi</strong> hisaab likho. Sab data phone mein safe, sync ho jayega baad mein.
+                </p>
+            </div>
+
+            <div class="trust-card">
+                <div class="trust-icon">👥</div>
+                <h3>Trusted by 50,000+ Riders</h3>
+                <p>Real gig workers from Rapido, Uber, Dunzo, and more trust Kitna Bana for their finances.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Real Stories From <span class="highlight-green">Real Riders</span></h2>
+            <p class="section-subtitle">See how Kitna Bana changed their financial lives</p>
+        </div>
+
+        <div class="swiper-container testimonials-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Pehle mahine ke end mein confusion rehta tha - kitna kamaya, kitna kharch kiya.
+                            <strong>Ab daily clear picture hai.</strong> Last month ₹4,200 extra save kiya!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RK</div>
+                            <div class="author-info">
+                                <div class="author-name">Rajesh Kumar</div>
+                                <div class="author-role">Rapido Rider, Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Target miss karna band ho gaya. <strong>AI batata hai exactly kitne orders chahiye.</strong>
+                            Ab average 5 din pehle target achieve kar leta hoon!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">KP</div>
+                            <div class="author-info">
+                                <div class="author-name">Kishan Patel</div>
+                                <div class="author-role">Uber Driver, Mumbai</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Fuel expenses itne zyada the. <strong>Kitna Bana ne bataya ki peak hours mein kaam karo.</strong>
+                            Ab ₹1,500 kam kharcha hota hai har mahine!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">GS</div>
+                            <div class="author-info">
+                                <div class="author-name">Gorav Singh</div>
+                                <div class="author-role">Food Delivery, Bangalore</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Kabhi financial planning nahi ki. <strong>Ab har mahine ₹2,000 save kar raha hoon.</strong>
+                            12 mahine mein ₹25,000 emergency fund ban gaya!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SK</div>
+                            <div class="author-info">
+                                <div class="author-name">Sahil Khan</div>
+                                <div class="author-role">Dunzo Delivery, Hyderabad</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Nahi pata tha ki kaunse hours mein zyada earning hoti hai. <strong>AI ne bataya, ab ₹800 zyada
+                            kama raha hoon daily!</strong> Bahut helpful!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">VS</div>
+                            <div class="author-info">
+                                <div class="author-name">Vikram Sharma</div>
+                                <div class="author-role">Ola Driver, Pune</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">
+                            "Voice entry bahut easy hai. <strong>Typing karna padta tha, ab sirf bolna padta hai.</strong>
+                            Kitna Bana ne sab simple kar diya!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AJ</div>
+                            <div class="author-info">
+                                <div class="author-name">Arjun Joshi</div>
+                                <div class="author-role">Rapido Rider, Pune</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="download">
+        <div class="cta-content">
+            <div class="cta-badge">2 minutes mein setup</div>
+            <h2>Bas 2 Minutes Mein <span>Hisab se Chutti!</span></h2>
+            <p>
+                Download karo, voice mein entry karo, <strong>smart insights pao</strong>. Aaj se tension nahi, sirf clear planning!
+            </p>
+
+            <div class="download-section">
+                <div class="qr-container">
+                    <div class="qr-code" role="button" aria-label="Open Google Play">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="100" height="100" fill="white" />
+                            <rect x="5" y="5" width="20" height="20" fill="black" />
+                            <rect x="7" y="7" width="16" height="16" fill="white" />
+                            <rect x="9" y="9" width="12" height="12" fill="black" />
+                            <rect x="75" y="5" width="20" height="20" fill="black" />
+                            <rect x="77" y="7" width="16" height="16" fill="white" />
+                            <rect x="79" y="9" width="12" height="12" fill="black" />
+                            <rect x="5" y="75" width="20" height="20" fill="black" />
+                            <rect x="7" y="77" width="16" height="16" fill="white" />
+                            <rect x="9" y="79" width="12" height="12" fill="black" />
+                            <rect x="30" y="30" width="5" height="5" fill="black" />
+                            <rect x="40" y="30" width="5" height="5" fill="black" />
+                            <rect x="50" y="30" width="5" height="5" fill="black" />
+                            <rect x="30" y="40" width="5" height="5" fill="black" />
+                            <rect x="50" y="40" width="5" height="5" fill="black" />
+                            <rect x="30" y="50" width="5" height="5" fill="black" />
+                            <rect x="40" y="50" width="5" height="5" fill="black" />
+                            <rect x="50" y="50" width="5" height="5" fill="black" />
+                            <rect x="35" y="60" width="5" height="5" fill="black" />
+                            <rect x="45" y="60" width="5" height="5" fill="black" />
+                            <rect x="55" y="60" width="5" height="5" fill="black" />
+                        </svg>
+                    </div>
+                    <p class="qr-label">Scan to Download</p>
+                </div>
+
+                <div class="download-text">
+                    <p class="download-heading">Get the App</p>
+                    <div class="play-store-badge">
+                        <img src="google-play.png" width="24" height="24" alt="Google Play Store Logo" />
+                        <p class="download-info">Available on Google Play</p>
+                    </div>
+                    <div class="download-benefits">
+                        <span>✓ Free Forever</span>
+                        <span>✓ Works Offline</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-text">
+                    <span class="logo-kitna">Kitna</span><span class="logo-bana">Bana</span>
+                </div>
+            </div>
+            <p class="footer-tagline">Gig workers ka financial sidekick</p>
+            <p class="footer-copyright">© 2025 Kitna Bana. Made with ❤️ for Indian gig workers.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JS -->
+    <script src="script.js"></script>
+</body>
+</html>
