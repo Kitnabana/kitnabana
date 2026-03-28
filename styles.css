@@ -2033,3 +2033,83 @@ p { margin-bottom: var(--space-md); line-height: var(--lh-normal); }
     .qr-code { width: 150px; height: 150px; }
     .download-section { padding: 0 var(--space-md); }
 }
+
+/* ============================================
+   APP DOWNLOAD POPUP
+   ============================================ */
+.app-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.app-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.app-popup-content {
+    background-color: var(--white);
+    padding: var(--space-xl);
+    border-radius: 20px;
+    text-align: center;
+    max-width: 90%;
+    width: 360px;
+    position: relative;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.app-popup-overlay.show .app-popup-content {
+    transform: translateY(0);
+}
+
+.app-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--dark-gray);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.app-popup-close:hover {
+    background-color: var(--light-gray);
+}
+
+.app-popup-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    margin-bottom: var(--space-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.app-popup-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-md);
+    font-size: var(--text-base);
+    text-decoration: none;
+}
