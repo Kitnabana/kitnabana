@@ -309,3 +309,34 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("resize", () => {
   ScrollTrigger.refresh();
 });
+
+// ============================================
+// APP DOWNLOAD POPUP LOGIC
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const popupOverlay = document.getElementById("app-download-popup");
+  const closePopupBtn = document.getElementById("close-app-popup");
+  
+  // Show popup if on mobile and hasn't explicitly closed it this session
+  if (isMobile && popupOverlay && !sessionStorage.getItem("appPopupClosed")) {
+    setTimeout(() => {
+      popupOverlay.classList.add("show");
+    }, 1500); // 1.5 seconds delay
+  }
+  
+  if (closePopupBtn && popupOverlay) {
+    closePopupBtn.addEventListener("click", () => {
+      popupOverlay.classList.remove("show");
+      sessionStorage.setItem("appPopupClosed", "true");
+    });
+    
+    // Close on clicking outside
+    popupOverlay.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.classList.remove("show");
+        sessionStorage.setItem("appPopupClosed", "true");
+      }
+    });
+  }
+});
