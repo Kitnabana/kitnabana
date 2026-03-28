@@ -418,18 +418,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
-   <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12" defer></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12" defer></script>
 
     <!-- ========== GOOGLE ANALYTICS (GA4) ========== -->
     <!-- Replace YOUR_GA_ID with actual measurement ID -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPZH36XGPZ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-FPZH36XGPZ');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_ID');
     </script>
 </head>
 
@@ -1017,6 +1015,19 @@
             </nav>
         </div>
     </footer>
+
+    <!-- App Download Popup -->
+    <div id="app-download-popup" class="app-popup-overlay">
+        <div class="app-popup-content">
+            <button class="app-popup-close" aria-label="Close" id="close-app-popup">×</button>
+            <img src="/apple-touch-icon.png" alt="KitnaBana Logo" class="app-popup-logo" onerror="this.src='/favicon-32x32.png'">
+            <h3>Download KitnaBana App</h3>
+            <p>Ghanto ka hisab ab minto mein! Get our free app for the best experience.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.kitnabana.app" class="btn btn-primary app-popup-btn">
+                Open in Play Store
+            </a>
+        </div>
+    </div>
 
     <script src="script.js" defer></script>
 </body>
